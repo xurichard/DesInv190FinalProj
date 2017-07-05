@@ -186,7 +186,7 @@ class Controller:
 
 		GPIO.setup(27, GPIO.IN) #button pin
 
-		GPIO.add_event_detect(buttonPin, GPIO.BOTH, callback=dispensePill)
+		GPIO.add_event_detect(27, GPIO.BOTH, callback=dispensePill)
 		schedule.every().minute.do(self.reminder)
 
 def main():
