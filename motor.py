@@ -7,6 +7,7 @@ import schedule
 # Need the latest version of GPIO
 # $ sudo apt-get update
 # $ sudo apt-get dist-upgrade
+# https://github.com/dbader/schedule
 
 test = True
 if test:
@@ -108,7 +109,7 @@ class Dispenser:
 		self.pwm.stop()
 
 # Class for interfacing with the piezoelectric buzzer
-class alarm():
+class alarm:
 
 	def __init__(self, pin):
 		self.pin = pin
