@@ -109,7 +109,7 @@ class Dispenser:
 		self.pwm.stop()
 
 # Class for interfacing with the piezoelectric buzzer
-class alarm:
+class Alarm:
 
 	def __init__(self, pin):
 		self.pin = pin
@@ -147,9 +147,9 @@ class alarm:
 class Controller:
 
 	def __init__(self, alarmPin, motorPin, rotationAngle):
-		self.alarm = new alarm(alarmPin)
-		self.dispeser = new Dispenser(motorPin, rotationAngle)
-		self.timer = new Timer()
+		self.alarm = Alarm(alarmPin)
+		self.dispeser = Dispenser(motorPin, rotationAngle)
+		self.timer = Timer()
 		self.doseNum = 1
 
 	# Once the button is pressed, we have to check the time whether or not to dispense the pill or not
@@ -181,7 +181,7 @@ def main():
 
 
 if __name__ == "__main__":
-    if test:
+	if test:
 		root = Tk()
 		root.wm_title('Servo Control')
 		app = VisualApp(root)
