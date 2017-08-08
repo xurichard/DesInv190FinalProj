@@ -80,7 +80,7 @@ class Timer:
 	# 			return self.times[i+1]
 	# 	return None
 
-	def betweenTimes(self, time=datetime.now()):
+	def betweenTimes(self, time=datetime.datetime.now()):
 		after = (None, None)
 		before = (None, None)
 		for i in range(len(self.times)):
