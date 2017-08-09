@@ -241,9 +241,7 @@ def main():
         		duty = float(0) / 180 + 5
         		pwm.ChangeDutyCycle(duty)
         		time.sleep(2)
-
-				
-				pwm.stop()
+        		pwm.stop()
 
 			if (datetime.datetime.now() - due).total_seconds() > 0:
 				Alarm(17).play()
