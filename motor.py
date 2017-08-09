@@ -36,6 +36,7 @@ class Timer:
 
 	def __init__(self):
 		self.times = [] #filled with datetimes
+		print("timer set up")
 
 	def add(self, time):
 		if type(time) == datetime:
@@ -175,7 +176,7 @@ class Controller:
 		schedule.every().minute.do(self.reminder)
 
 def main():
-	buttonPin = 1
+	buttonPin = 27
 	motorPin = 18
 	alarmPin = 17
 	rotationAngle = 55
@@ -188,9 +189,8 @@ def main():
 	GPIO.add_event_detect(buttonPin, GPIO.BOTH, callback=controller.dispensePill)
 
 	print("finished setup")
-	urllib2.urlopen("http://idd190-xurichard.c9users.io:8080/messaging/sms").read()
-	print("messaged")
-
+	# urllib2.urlopen("http://idd190-xurichard.c9users.io:8080/messaging/sms").read()
+	# print("messaged")
 
 if __name__ == "__main__":
 	if test:
