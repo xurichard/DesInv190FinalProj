@@ -192,18 +192,22 @@ class Controller:
 def main():
 	GPIO.cleanup()
 
-	buttonPin = 27
-	motorPin = 18
-	alarmPin = 17
-	rotationAngle = 55
+	# buttonPin = 27
+	# motorPin = 18
+	# alarmPin = 17
+	# rotationAngle = 55
 
-	controller = Controller(alarmPin, motorPin, rotationAngle)
+	# controller = Controller(alarmPin, motorPin, rotationAngle)
 
-	controller.timer.add(datetime.datetime.now() + datetime.timedelta(minutes=1)) # test
-	controller.setup()
+	# controller.timer.add(datetime.datetime.now() + datetime.timedelta(minutes=1)) # test
+	# controller.setup()
 
-	GPIO.setup(buttonPin, GPIO.IN)
-	GPIO.add_event_detect(buttonPin, GPIO.BOTH, callback=controller.dispensePill)
+	# GPIO.setup(buttonPin, GPIO.IN)
+	# GPIO.add_event_detect(buttonPin, GPIO.BOTH, callback=controller.dispensePill)
+	GPIO.add_event_detect(27, GPIO.BOTH, callback=temp, bouncetime=200)
+
+def temp():
+	print "hi"
 
 if __name__ == "__main__":
 	if test:
