@@ -192,7 +192,7 @@ class Controller:
 def main():
 	GPIO.cleanup()
 
-	# buttonPin = 27
+	# buttonPin = 
 	# motorPin = 18
 	# alarmPin = 17
 	# rotationAngle = 55
@@ -205,8 +205,8 @@ def main():
 	# GPIO.setup(buttonPin, GPIO.IN)
 	# GPIO.add_event_detect(buttonPin, GPIO.BOTH, callback=controller.dispensePill)
 	GPIO.setmode(GPIO.BCM)
-	GPIO.setup(17, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-	GPIO.add_event_detect(17, GPIO.BOTH, callback=temp, bouncetime=200)
+	GPIO.setup(15, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+	GPIO.add_event_detect(15, GPIO.BOTH, callback=temp, bouncetime=200)
 
 	while(True):
 		try:
@@ -214,7 +214,7 @@ def main():
 			time.sleep(1) # sleep 1 sec
 		finally:
 			GPIO.cleanup()
-def temp():
+def temp(channel):
 	print "hi"
 
 if __name__ == "__main__":
