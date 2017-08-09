@@ -205,8 +205,8 @@ def main():
 	# GPIO.setup(buttonPin, GPIO.IN)
 	# GPIO.add_event_detect(buttonPin, GPIO.BOTH, callback=controller.dispensePill)
 	GPIO.setmode(GPIO.BCM)
-	GPIO.setup(27, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-	GPIO.add_event_detect(27, GPIO.BOTH, callback=temp, bouncetime=200)
+	GPIO.setup(17, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+	GPIO.add_event_detect(17, GPIO.BOTH, callback=temp, bouncetime=200)
 
 	while(True):
 		try:
