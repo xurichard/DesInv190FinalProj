@@ -230,9 +230,7 @@ def main():
 				GPIO.setmode(GPIO.BCM)
 				GPIO.setup(18, GPIO.OUT)
 				pwm = GPIO.PWM(18, 100)
-
 				pwm.start(5) #slot/total_slots
-
 				duty = float(55) / 180 + 5
         		pwm.ChangeDutyCycle(duty)
         		time.sleep(2)
