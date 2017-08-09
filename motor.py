@@ -189,8 +189,14 @@ class Controller:
 		GPIO.add_event_detect(27, GPIO.BOTH, callback=self.dispensePill, bouncetime=200)
 		schedule.every().minute.do(self.reminder)
 
+def temp(channel):
+	print "hi"
+
 def main():
 	GPIO.cleanup()
+
+	def temp(channel):
+		print "hi"
 
 	# buttonPin = 
 	# motorPin = 18
@@ -214,9 +220,6 @@ def main():
 			time.sleep(1) # sleep 1 sec
 		finally:
 			GPIO.cleanup()
-
-def temp(channel):
-	print "hi"
 
 if __name__ == "__main__":
 	if test:
