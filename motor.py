@@ -196,7 +196,7 @@ def main():
 	GPIO.cleanup()
 
 	def temp(channel):
-		print "hi"
+		print "hi2"
 
 	# buttonPin = 
 	# motorPin = 18
@@ -216,7 +216,9 @@ def main():
 
 	while(True):
 		try:
-# do any other processing, while waiting for the edge detection
+			if GPIO.input(27):
+				print("no")
+
 			time.sleep(1) # sleep 1 sec
 		finally:
 			GPIO.cleanup()
