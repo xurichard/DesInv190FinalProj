@@ -216,11 +216,11 @@ def main():
 	# GPIO.setup(27, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 	# GPIO.add_event_detect(27, GPIO.RISING, callback=temp, bouncetime=200)
 
-	GPIO.setmode(GPIO.BCM)
-	GPIO.setup(27, GPIO.IN)
-
 	while(True):
 		try:
+			GPIO.setmode(GPIO.BCM)
+			GPIO.setup(27, GPIO.IN)
+			GPIO.setup(17, GPIO.OUT)
 			
 			if GPIO.input(27):
 				#button press detected
