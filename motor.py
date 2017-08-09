@@ -238,18 +238,22 @@ def main():
 				angle = ((0/180.0) + 1.0) * 5.0
 				print angle
 				pwm.ChangeDutyCycle(angle)
-				time.sleep(2)
+				time.sleep(5)
 
-				angle = ((100/180.0) + 1.0) * 5.0
-				print angle
-				pwm.ChangeDutyCycle(angle)
-				time.sleep(2)
+				# angle = ((100/180.0) + 1.0) * 5.0
+				# print angle
+				# pwm.ChangeDutyCycle(angle)
+				# time.sleep(2)
 
 				pwm.stop()
 
 
 			if (datetime.datetime.now() - due).total_seconds() > 0 and not alarmed:
 				Alarm(17).play()
+				account_sid = "ACee7629d3b852047940e7667b3df719a9"
+				auth_token = "0b8a98fc45556026f66922e11f5484f0"
+				client = Client(account_sid, auth_token)
+				client.api.account.messages.create(to="+14256236872", from_="+14142400316", body="Remember to take your medicine!")
 				alarmed = True
 
 			print (datetime.datetime.now() - due).total_seconds()
