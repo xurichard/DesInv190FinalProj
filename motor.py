@@ -115,8 +115,8 @@ class Dispenser:
 		self.angle = angle
 		self.pin = pin
 
-	def dispense(self, slot):
-		self.pwm.start(slot*self.angle) #slot/total_slots
+	def dispense(self):
+		self.pwm.start(self.angle) #slot/total_slots
 		time.sleep(5) #wait for 5 seconds while dispensing
 		self.pwm.stop()
 
@@ -225,7 +225,7 @@ def main():
 			if GPIO.input(27):
 				#button press detected
 				print("button pressed")
-				Dispenser(18,55).dispense(55)
+				Dispenser(18,55).dispense()
 
 			if (datetime.datetime.now() - due).total_seconds() > 0:
 				Alarm(17).play()
