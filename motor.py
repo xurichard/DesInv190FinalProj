@@ -187,8 +187,9 @@ def main():
 	GPIO.setup(buttonPin, GPIO.IN)
 	GPIO.add_event_detect(buttonPin, GPIO.BOTH, callback=controller.dispensePill)
 
+	print("finished setup")
 	urllib2.urlopen("http://idd190-xurichard.c9users.io:8080/messaging/sms").read()
-
+	print("messaged")
 
 
 if __name__ == "__main__":
