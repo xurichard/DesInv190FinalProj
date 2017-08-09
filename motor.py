@@ -198,10 +198,10 @@ def main():
 	def temp(channel):
 		print "hi2"
 
-	# buttonPin = 
-	# motorPin = 18
-	# alarmPin = 17
-	# rotationAngle = 55
+	buttonPin = 27
+	motorPin = 18
+	alarmPin = 17
+	rotationAngle = 55
 
 	controller = Controller(alarmPin, motorPin, rotationAngle)
 
@@ -227,7 +227,7 @@ def main():
 				controller.alarm.play()
 
 			print controller.timer.times[0]
-			
+
 			time.sleep(1) # sleep 1 sec
 		finally:
 			GPIO.cleanup()
