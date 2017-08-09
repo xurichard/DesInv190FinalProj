@@ -10,6 +10,8 @@ import urllib2
 # $ sudo apt-get dist-upgrade
 # https://github.com/dbader/schedule
 
+GPIO.setwarnings(False)
+
 test = False
 if test:
 	GPIO.setmode(GPIO.BCM)
@@ -111,7 +113,7 @@ class Dispenser:
 # Class for interfacing with the piezoelectric buzzer
 class Alarm:
 
-	def __init__(self, pin):
+	def __init__(self, pin=17):
 		self.pin = pin
 		GPIO.setmode(GPIO.BCM)
 		GPIO.setup(self.pin, GPIO.OUT)
