@@ -218,7 +218,7 @@ def main():
 	# GPIO.setup(27, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 	# GPIO.add_event_detect(27, GPIO.RISING, callback=temp, bouncetime=200)
 	alarmed = False
-	angles = [5, 10, 20, 80]
+	angles = [80, 15, 10, 5]
 	index = 0
 	while(True):
 		try:
