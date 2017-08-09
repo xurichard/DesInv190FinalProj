@@ -183,6 +183,8 @@ def main():
 	controller = Controller(alarmPin, motorPin, rotationAngle)
 
 	controller.timer.add(datetime.datetime.now() + datetime.timedelta(minutes=1)) # test
+
+	GPIO.setup(buttonPin, GPIO.OUT)
 	GPIO.add_event_detect(buttonPin, GPIO.BOTH, callback=controller.dispensePill)
 
 	urllib2.urlopen("http://idd190-xurichard.c9users.io:8080/messaging/sms").read()
