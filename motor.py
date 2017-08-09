@@ -218,7 +218,7 @@ def main():
 	# GPIO.setup(27, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 	# GPIO.add_event_detect(27, GPIO.RISING, callback=temp, bouncetime=200)
 	alarmed = False
-	angles = [180, 90, 0]
+	angles = [160, 90, 10]
 	index = 0
 	while(True):
 		try:
@@ -227,14 +227,13 @@ def main():
 			GPIO.setup(17, GPIO.OUT)
 
 			if GPIO.input(27) and (datetime.datetime.now() - due).total_seconds() > 0:
-
 				print("button pressed")
 				GPIO.setmode(GPIO.BCM)
 				GPIO.setup(18, GPIO.OUT)
 				pwm = GPIO.PWM(18, 100)
 				pwm.start(5)
 
-				angle = (angles[index]/10.0) + 4
+				angle = (angles[index]/10.0) + 2.5
 				print angle, index
 				pwm.ChangeDutyCycle(angle)
 				time.sleep(1)
