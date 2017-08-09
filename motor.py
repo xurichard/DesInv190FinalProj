@@ -217,6 +217,7 @@ def main():
 	while(True):
 		try:
 			GPIO.setmode(GPIO.BCM)
+			GPIO.setup(27, GPIO.IN)
 			if GPIO.input(27):
 				print("no")
 
