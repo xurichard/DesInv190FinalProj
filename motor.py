@@ -217,14 +217,14 @@ def main():
 	# GPIO.setmode(GPIO.BCM)
 	# GPIO.setup(27, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 	# GPIO.add_event_detect(27, GPIO.RISING, callback=temp, bouncetime=200)
-
+	alarmed = False
 	while(True):
 		try:
 			GPIO.setmode(GPIO.BCM)
 			GPIO.setup(27, GPIO.IN)
 			GPIO.setup(17, GPIO.OUT)
 
-			if GPIO.input(27):
+			if GPIO.input(27) and (datetime.datetime.now() - due).total_seconds() > 0:
 				#button press detected
 				print("button pressed")
 				GPIO.setmode(GPIO.BCM)
@@ -240,7 +240,7 @@ def main():
 				pwm.ChangeDutyCycle(angle)
 				time.sleep(2)
 
-				angle = ((180/180.0) + 1.0) * 5.0
+				angle = ((100/180.0) + 1.0) * 5.0
 				print angle
 				pwm.ChangeDutyCycle(angle)
 				time.sleep(2)
@@ -248,9 +248,9 @@ def main():
 				pwm.stop()
 
 
-			if (datetime.datetime.now() - due).total_seconds() > 0:
+			if (datetime.datetime.now() - due).total_seconds() > 0 and not alarmed:
 				Alarm(17).play()
-				due = datetime.datetime.now() + datetime.timedelta(minutes=1)
+				alarmed = True
 
 			print (datetime.datetime.now() - due).total_seconds()
 
