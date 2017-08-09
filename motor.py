@@ -230,16 +230,20 @@ def main():
 				GPIO.setmode(GPIO.BCM)
 				GPIO.setup(18, GPIO.OUT)
 				pwm = GPIO.PWM(18, 100)
+
 				pwm.start(5) #slot/total_slots
-				duty = float(55) / 180 + 5
-        		pwm.ChangeDutyCycle(duty)
-        		time.sleep(2)
 
+				duty = float(55) / 10.0 + 2.5
+				pwm.ChangeDutyCycle(duty)
 
-        		duty = float(0) / 180 + 5
-        		pwm.ChangeDutyCycle(duty)
-        		time.sleep(2)
-        		pwm.stop()
+				time.sleep(2)
+
+				duty = float(0) / 10.0 + 2.5
+				pwm.ChangeDutyCycle(duty)
+
+				time.sleep(2)
+				pwm.sleep()
+
 
 			if (datetime.datetime.now() - due).total_seconds() > 0:
 				Alarm(17).play()
