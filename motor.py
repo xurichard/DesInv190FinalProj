@@ -227,27 +227,22 @@ def main():
 			GPIO.setup(17, GPIO.OUT)
 
 			if GPIO.input(27) and (datetime.datetime.now() - due).total_seconds() > 0:
-				#button press detected
+
 				print("button pressed")
 				GPIO.setmode(GPIO.BCM)
 				GPIO.setup(18, GPIO.OUT)
-				pwm = GPIO.PWM(18, 50)
+				pwm = GPIO.PWM(18, 100)
+				pwm.start(5)
 
-				pwm.start(5) #slot/total_slots
-
-				# dutycycle = ((angle/180.0) + 1.0) * 5.0
-				angle = ((angles[index]/180.0) + 1.0) * 5.0
-				index += 1
+				angle = (angles[index]/10.0) + 2.5
 				print angle, index
 				pwm.ChangeDutyCycle(angle)
 				time.sleep(5)
-				angle = 100
 
-
-				# angle = ((100/180.0) + 1.0) * 5.0
-				# print angle
-				# pwm.ChangeDutyCycle(angle)
-				# time.sleep(2)
+				if index < len(angles)-1:
+					index += 1
+				else:
+					index = 0
 
 				pwm.stop()
 
