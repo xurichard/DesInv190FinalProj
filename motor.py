@@ -137,9 +137,9 @@ class Alarm:
 		cycles = int(duration * pitch)
 
 		for i in range(cycles):
-			GPIO.output(self.buzzer_pin, True)
+			GPIO.output(self.pin, True)
 			time.sleep(delay)
-			GPIO.output(self.buzzer_pin, False)
+			GPIO.output(self.pin, False)
 			time.sleep(delay)
 
 	def play(self):
@@ -176,7 +176,7 @@ class Controller:
 		now = datetime.datetime.now()
 		before, after = self.timer.betweenTimes(now)
 		if (now - after[1]).total_seconds()/60 < 15:
-			self.buzzer.play()
+			self.alarm.play()
 			urllib2.urlopen("http://idd190-xurichard.c9users.io:8080/messaging/sms").read()
 
 	# Timer gets setup in setup only
@@ -199,7 +199,7 @@ def main():
 
 	print("finished setup")
 
-	controller.buzzer.play()
+	controller.alarm.play()
 
 
 if __name__ == "__main__":
