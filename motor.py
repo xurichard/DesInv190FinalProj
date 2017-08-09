@@ -229,16 +229,17 @@ def main():
 				print("button pressed")
 				GPIO.setmode(GPIO.BCM)
 				GPIO.setup(18, GPIO.OUT)
-				pwm = GPIO.PWM(18, 100)
+				pwm = GPIO.PWM(18, 1000)
+
+
 				pwm.start(5) #slot/total_slots
-				duty = float(55) + 2.5
-				pwm.ChangeDutyCycle(duty)
-				time.sleep(2) #wait for 5 seconds while dispensing
+
+				pwm.ChangeDutyCycle(7.5)
+				time.sleep(5) #wait for 5 seconds while dispensing
 
 				#set back
-				duty = float(2.5)
-				pwm.ChangeDutyCycle(duty)
-				time.sleep(1)
+				pwm.ChangeDutyCycle(2.5)
+				time.sleep(5)
 				pwm.stop()
 
 			if (datetime.datetime.now() - due).total_seconds() > 0:
