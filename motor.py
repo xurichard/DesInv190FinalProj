@@ -218,7 +218,8 @@ def main():
 	# GPIO.setup(27, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 	# GPIO.add_event_detect(27, GPIO.RISING, callback=temp, bouncetime=200)
 	alarmed = False
-	angle = 0
+	angles = [0, 45, 90, 105, 120, 145, 160, 175, 180]
+	index = 0
 	while(True):
 		try:
 			GPIO.setmode(GPIO.BCM)
@@ -235,16 +236,13 @@ def main():
 				pwm.start(5) #slot/total_slots
 
 				# dutycycle = ((angle/180.0) + 1.0) * 5.0
-				if angle != 0:
-					angle = ((0/180.0) + 1.0) * 5.0
-					print angle
-					pwm.ChangeDutyCycle(angle)
-					time.sleep(5)
-					angle = 100
-				else:
-					angle = ((100/180.0) + 1.0) * 5.0
-					pwm.ChangeDutyCycle(angle)
-					time.sleep(5)
+				angle = ((angles[index]/180.0) + 1.0) * 5.0
+				index += 1
+				print angle, index
+				pwm.ChangeDutyCycle(angle)
+				time.sleep(5)
+				angle = 100
+
 
 				# angle = ((100/180.0) + 1.0) * 5.0
 				# print angle
