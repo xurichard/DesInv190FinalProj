@@ -38,7 +38,7 @@ class VisualApp:
         scale.grid(row=0)
 
     def update(self, angle):
-        duty = float(angle) / 180 * 100 + 5
+        duty = float(angle) / 180  + 5
         pwm.ChangeDutyCycle(duty)
 
 class Timer:
@@ -233,13 +233,15 @@ def main():
 
 				pwm.start(5) #slot/total_slots
 
-				pwm.ChangeDutyCycle(10)
+				# dutycycle = ((angle/180.0) + 1.0) * 5.0
 
+				pwm.ChangeDutyCycle(((0/180.0) + 1.0) * 5.0)
 				time.sleep(2)
 
-				pwm.ChangeDutyCycle(5)
-
+				#90
+				pwm.ChangeDutyCycle(((90/180.0) + 1.0) * 5.0)
 				time.sleep(2)
+
 				pwm.stop()
 
 
