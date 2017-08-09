@@ -225,7 +225,7 @@ def main():
 			if GPIO.input(27):
 				#button press detected
 				print("button pressed")
-				Dispenser(18,55).dispense(1)
+				Dispenser(18,55).dispense(55)
 
 			if (datetime.datetime.now() - due).total_seconds() > 0:
 				Alarm(17).play()
