@@ -206,7 +206,7 @@ def main():
 	# GPIO.add_event_detect(buttonPin, GPIO.BOTH, callback=controller.dispensePill)
 	GPIO.setmode(GPIO.BCM)
 	GPIO.setup(24, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-	GPIO.add_event_detect(24, GPIO.BOTH, callback=temp, bouncetime=200)
+	GPIO.add_event_detect(24, GPIO.RISING, callback=temp, bouncetime=200)
 
 	while(True):
 		try:
@@ -214,6 +214,7 @@ def main():
 			time.sleep(1) # sleep 1 sec
 		finally:
 			GPIO.cleanup()
+			
 def temp(channel):
 	print "hi"
 
