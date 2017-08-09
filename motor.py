@@ -145,7 +145,7 @@ class Alarm:
 			time.sleep(delay)
 
 	def play(self):
-		pitches=[262,294,330,349,392,440,494,523,587,659,698,784,880,988,1047]
+		pitches=[262,294,330,349]
 		duration=0.1
 		for p in pitches:
 			self.buzz(p, duration)
@@ -208,7 +208,7 @@ def main():
 	controller = Controller(alarmPin, motorPin, rotationAngle)
 
 	# controller.timer.add(datetime.datetime.now() + datetime.timedelta(minutes=1)) # test
-	due = datetime.datetime.now() + datetime.timedelta(minutes=1)
+	due = datetime.datetime.now() + datetime.timedelta(seconds=10)
 	# controller.setup()
 
 	# GPIO.setup(buttonPin, GPIO.IN)
