@@ -223,7 +223,7 @@ def main():
 				#button press detected
 				print("button pressed")
 
-			if contoller.timer.check():
+			if controller.timer.check():
 				controller.alarm.play()
 
 			print controller.timer.times[0]
