@@ -177,10 +177,15 @@ class Controller:
 		before, after = self.timer.betweenTimes(now)
 		if (now - after[1]).total_seconds()/60 < 15:
 			self.alarm.play()
-			urllib2.urlopen("http://idd190-xurichard.c9users.io:8080/messaging/sms").read()
+			# urllib2.urlopen("http://idd190-xurichard.c9users.io:8080/messaging/sms").read()
+			send_sms()
 
 	# Timer gets setup in setup only
 	def setup(self):
+		GPIO.setmode(GPIO.BCM)
+
+		GPIO.setup(27, GPIO.IN) #button pin
+
 		GPIO.add_event_detect(buttonPin, GPIO.BOTH, callback=dispensePill)
 		schedule.every().minute.do(self.reminder)
 
@@ -193,14 +198,10 @@ def main():
 	controller = Controller(alarmPin, motorPin, rotationAngle)
 
 	controller.timer.add(datetime.datetime.now() + datetime.timedelta(minutes=1)) # test
+	controller.setup()
 
 	GPIO.setup(buttonPin, GPIO.IN)
 	GPIO.add_event_detect(buttonPin, GPIO.BOTH, callback=controller.dispensePill)
-
-	print("finished setup")
-
-	controller.alarm.play()
-
 
 if __name__ == "__main__":
 	if test:
