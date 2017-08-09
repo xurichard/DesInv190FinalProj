@@ -205,7 +205,8 @@ def main():
 
 	controller = Controller(alarmPin, motorPin, rotationAngle)
 
-	controller.timer.add(datetime.datetime.now() + datetime.timedelta(minutes=1)) # test
+	# controller.timer.add(datetime.datetime.now() + datetime.timedelta(minutes=1)) # test
+	due = datetime.datetime.now() + datetime.timedelta(minutes=1)
 	# controller.setup()
 
 	# GPIO.setup(buttonPin, GPIO.IN)
@@ -223,10 +224,10 @@ def main():
 				#button press detected
 				print("button pressed")
 
-			if controller.timer.check():
+			if (datetime.datetime.now() - due).total_seconds() > 0:
 				controller.alarm.play()
 
-			print controller.timer.times[0]
+			print (datetime.datetime.now() - due).total_seconds()
 
 			time.sleep(1) # sleep 1 sec
 		finally:
