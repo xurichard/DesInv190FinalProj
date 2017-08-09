@@ -3,6 +3,7 @@ import RPi.GPIO as GPIO
 import time
 import datetime
 import schedule
+import urllib2
 
 # Need the latest version of GPIO
 # $ sudo apt-get update
@@ -26,9 +27,8 @@ class VisualApp:
         scale.grid(row=0)
 
     def update(self, angle):
-        duty = float(angle) / 10.0 + 2.5
+        duty = float(angle) / 180 * 100 + 5
         pwm.ChangeDutyCycle(duty)
-
 
 class Timer:
 
@@ -165,6 +165,7 @@ class Controller:
 		before, after = self.timer.betweenTimes(now)
 		if (now - after[1]).total_seconds()/60 < 15:
 			self.buzzer.play()
+			urllib2.urlopen("http://idd190-xurichard.c9users.io:8080/messaging/sms").read()
 
 	# Timer gets setup in setup only
 	def setup(self):
@@ -174,9 +175,14 @@ class Controller:
 def main():
 	buttonPin = 1
 	motorPin = 18
+	rotationAngle = 55
 
-	timer.add(datetime.current + datetime.timedelta(minutes=1)) # test
-	GPIO.add_event_detect(buttonPin, GPIO.BOTH, callback=dispensePill)
+	controller = Controller(alarmPin, motorPin, rotationAngle)
+
+	controller.timer.add(datetime.current + datetime.timedelta(minutes=1)) # test
+	GPIO.add_event_detect(buttonPin, GPIO.BOTH, callback=controller.dispensePill)
+
+	urllib2.urlopen("http://idd190-xurichard.c9users.io:8080/messaging/sms").read()
 
 
 
