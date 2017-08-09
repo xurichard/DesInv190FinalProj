@@ -234,10 +234,10 @@ def main():
 				pwm = GPIO.PWM(18, 100)
 				pwm.start(5)
 
-				angle = (angles[index]/10.0) + 2.5
+				angle = (angles[index]/10.0) + 4
 				print angle, index
 				pwm.ChangeDutyCycle(angle)
-				time.sleep(5)
+				time.sleep(1)
 
 				if index < len(angles)-1:
 					index += 1
