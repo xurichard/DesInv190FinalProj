@@ -115,11 +115,11 @@ class Dispenser:
 		self.angle = angle
 		self.pin = pin
 
-	def dispense(self, slot):
+	def dispense(self):
 		self.pwm.start(5) #slot/total_slots
-		duty = float(self.angle*slot)%100
+		duty = float(20)
 		self.pwm.ChangeDutyCycle(duty)
-		time.sleep(2) #wait for 5 seconds while dispensing
+		time.sleep(5) #wait for 5 seconds while dispensings
 		self.pwm.stop()
 
 # Class for interfacing with the piezoelectric buzzer
@@ -217,7 +217,7 @@ def main():
 	# GPIO.setmode(GPIO.BCM)
 	# GPIO.setup(27, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 	# GPIO.add_event_detect(27, GPIO.RISING, callback=temp, bouncetime=200)
-	slot = 1
+
 	while(True):
 		try:
 			GPIO.setmode(GPIO.BCM)
@@ -227,8 +227,7 @@ def main():
 			if GPIO.input(27):
 				#button press detected
 				print("button pressed")
-				Dispenser(18,30).dispense(slot)
-				slot += 1
+				Dispenser(18,0).dispense()
 
 			if (datetime.datetime.now() - due).total_seconds() > 0:
 				Alarm(17).play()
