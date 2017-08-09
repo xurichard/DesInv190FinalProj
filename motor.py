@@ -115,7 +115,7 @@ class Dispenser:
 		self.angle = angle
 		self.pin = pin
 
-	def dispense(slot):
+	def dispense(self, slot):
 		self.pwm.start(slot*angle) #slot/total_slots
 		time.sleep(5) #wait for 5 seconds while dispensing
 		self.pwm.stop()
