@@ -235,11 +235,14 @@ def main():
 
 				# dutycycle = ((angle/180.0) + 1.0) * 5.0
 
-				pwm.ChangeDutyCycle(((0/180.0) + 1.0) * 5.0)
+				angle = ((0/180.0) + 1.0) * 5.0
+				print angle
+				pwm.ChangeDutyCycle(angle)
 				time.sleep(2)
 
-				#90
-				pwm.ChangeDutyCycle(((90/180.0) + 1.0) * 5.0)
+				angle = ((180/180.0) + 1.0) * 5.0
+				print angle
+				pwm.ChangeDutyCycle(angle)
 				time.sleep(2)
 
 				pwm.stop()
