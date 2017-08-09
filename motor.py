@@ -218,7 +218,7 @@ def main():
 	# GPIO.setup(27, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 	# GPIO.add_event_detect(27, GPIO.RISING, callback=temp, bouncetime=200)
 	alarmed = False
-	angles = [180, 90, 0]
+	angles = [180, 135, 90, 45, 0]
 	index = 0
 	while(True):
 		try:
@@ -251,7 +251,10 @@ def main():
 				account_sid = "ACee7629d3b852047940e7667b3df719a9"
 				auth_token = "0b8a98fc45556026f66922e11f5484f0"
 				client = Client(account_sid, auth_token)
-				client.api.account.messages.create(to="+14256236872", from_="+14142400316", body="Remember to take your medicine!")
+				try:
+					client.api.account.messages.create(to="+14256236872", from_="+14142400316", body="Remember to take your medicine!")
+				except ConnectionError:
+					print("ConnectionError")
 				alarmed = True
 
 			print (datetime.datetime.now() - due).total_seconds()
