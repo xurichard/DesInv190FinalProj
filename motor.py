@@ -117,7 +117,7 @@ class Dispenser:
 
 	def dispense(self):
 		self.pwm.start(5) #slot/total_slots
-		duty = float(self.angle) / 10.0 + 2.5
+		duty = float(20)
 		self.pwm.ChangeDutyCycle(duty)
 		time.sleep(5) #wait for 5 seconds while dispensing
 		self.pwm.stop()
