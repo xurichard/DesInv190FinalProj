@@ -148,9 +148,9 @@ class Alarm:
 		for p in pitches:
 			self.buzz(p, duration)
 			time.sleep(duration *0.5)
-		for p in reversed(pitches):
-			self.buzz(p, duration)
-			time.sleep(duration *0.5)
+		# for p in reversed(pitches):
+		# 	self.buzz(p, duration)
+		# 	time.sleep(duration *0.5)
 
 # Interrupt for button press
 # Constant poll for time
@@ -225,8 +225,7 @@ def main():
 			if GPIO.input(27):
 				#button press detected
 				print("button pressed")
-				if (datetime.datetime.now() - due).total_seconds() > 0:
-					Dispenser(18,55).dispense(1)
+				Dispenser(18,55).dispense(1)
 
 			if (datetime.datetime.now() - due).total_seconds() > 0:
 				Alarm(17).play()
