@@ -10,7 +10,7 @@ import urllib2
 # $ sudo apt-get dist-upgrade
 # https://github.com/dbader/schedule
 
-test = True
+test = False
 if test:
 	GPIO.setmode(GPIO.BCM)
 	GPIO.setup(18, GPIO.OUT)
@@ -161,7 +161,7 @@ class Controller:
 	# If it's within 15 minutes of taking your dosage (the 15 minutes after)
 	# buzz the piezo buzzer
 	def reminder(self):
-		now = datetime.current()
+		now = datetime.datetime.now()
 		before, after = self.timer.betweenTimes(now)
 		if (now - after[1]).total_seconds()/60 < 15:
 			self.buzzer.play()
@@ -175,11 +175,12 @@ class Controller:
 def main():
 	buttonPin = 1
 	motorPin = 18
+	alarmPin = 17
 	rotationAngle = 55
 
 	controller = Controller(alarmPin, motorPin, rotationAngle)
 
-	controller.timer.add(datetime.current + datetime.timedelta(minutes=1)) # test
+	controller.timer.add(datetime.datetime.now() + datetime.timedelta(minutes=1)) # test
 	GPIO.add_event_detect(buttonPin, GPIO.BOTH, callback=controller.dispensePill)
 
 	urllib2.urlopen("http://idd190-xurichard.c9users.io:8080/messaging/sms").read()
