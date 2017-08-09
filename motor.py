@@ -213,7 +213,7 @@ def main():
 # do any other processing, while waiting for the edge detection
 			sleep(1) # sleep 1 sec
 		finally:
-			gpio.cleanup()
+			GPIO.cleanup()
 def temp():
 	print "hi"
 
