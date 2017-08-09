@@ -1,4 +1,6 @@
 from Tkinter import *
+from twilio.rest import Client
+
 import RPi.GPIO as GPIO
 import time
 import datetime
@@ -9,6 +11,13 @@ import urllib2
 # $ sudo apt-get update
 # $ sudo apt-get dist-upgrade
 # https://github.com/dbader/schedule
+# Find these values at https://twilio.com/user/account
+account_sid = "ACee7629d3b852047940e7667b3df719a9"
+auth_token = "0b8a98fc45556026f66922e11f5484f0"
+client = Client(account_sid, auth_token)
+
+def send_sms():
+	client.api.account.messages.create(to="+14256236872", from_="+14142400316", body="Remember to take your medicine!")
 
 GPIO.setwarnings(False)
 
@@ -143,7 +152,6 @@ class Alarm:
 			self.buzz(p, duration)
 			time.sleep(duration *0.5)
 
-
 # Interrupt for button press
 # Constant poll for time
 
@@ -157,6 +165,7 @@ class Controller:
 
 	# Once the button is pressed, we have to check the time whether or not to dispense the pill or not
 	def dispensePill(self):
+		print "Tried to dispense"
 		if self.timer.check():
 			self.dispenser.dispense(self.doseNum)
 			self.doseNum += 1
@@ -189,8 +198,9 @@ def main():
 	GPIO.add_event_detect(buttonPin, GPIO.BOTH, callback=controller.dispensePill)
 
 	print("finished setup")
-	# urllib2.urlopen("http://idd190-xurichard.c9users.io:8080/messaging/sms").read()
-	# print("messaged")
+
+	controller.buzzer.play()
+
 
 if __name__ == "__main__":
 	if test:
