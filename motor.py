@@ -184,12 +184,14 @@ class Controller:
 	def setup(self):
 		GPIO.setmode(GPIO.BCM)
 
-		GPIO.setup(27, GPIO.IN) #button pin
+		GPIO.setup(27, GPIO.IN, pull_up_down=GPIO.PUD_DOWN) #button pin
 
-		GPIO.add_event_detect(27, GPIO.BOTH, callback=self.dispensePill)
+		GPIO.add_event_detect(27, GPIO.BOTH, callback=self.dispensePill, bouncetime=200)
 		schedule.every().minute.do(self.reminder)
 
 def main():
+	GPIO.cleanup()
+
 	buttonPin = 27
 	motorPin = 18
 	alarmPin = 17
