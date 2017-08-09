@@ -234,8 +234,6 @@ def main():
 				duty = float(55) / 10.0 + 2.5
 				pwm.ChangeDutyCycle(duty)
 				time.sleep(2) #wait for 5 seconds while dispensing
-				duty = float(5)
-				pwm.ChangeDutyCycle(duty)
 				pwm.stop()
 
 			if (datetime.datetime.now() - due).total_seconds() > 0:
