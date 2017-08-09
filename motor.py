@@ -212,20 +212,22 @@ def main():
 	# GPIO.setup(buttonPin, GPIO.IN)
 	# GPIO.add_event_detect(buttonPin, GPIO.BOTH, callback=controller.dispensePill)
 
+	# GPIO.setmode(GPIO.BCM)
+	# GPIO.setup(27, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+	# GPIO.add_event_detect(27, GPIO.RISING, callback=temp, bouncetime=200)
+
 	GPIO.setmode(GPIO.BCM)
-	GPIO.setup(27, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-	GPIO.add_event_detect(27, GPIO.RISING, callback=temp, bouncetime=200)
+	GPIO.setup(27, GPIO.IN)
 
 	while(True):
 		try:
-			GPIO.setmode(GPIO.BCM)
-			GPIO.setup(27, GPIO.IN)
+			
 			if GPIO.input(27):
 				#button press detected
 				print("button pressed")
 
 			if (datetime.datetime.now() - due).total_seconds() > 0:
-				controller.alarm.play()
+				alarm(17).play()
 
 			print (datetime.datetime.now() - due).total_seconds()
 
