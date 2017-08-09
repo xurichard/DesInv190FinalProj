@@ -203,13 +203,14 @@ def main():
 	# alarmPin = 17
 	# rotationAngle = 55
 
-	# controller = Controller(alarmPin, motorPin, rotationAngle)
+	controller = Controller(alarmPin, motorPin, rotationAngle)
 
-	# controller.timer.add(datetime.datetime.now() + datetime.timedelta(minutes=1)) # test
+	controller.timer.add(datetime.datetime.now() + datetime.timedelta(minutes=1)) # test
 	# controller.setup()
 
 	# GPIO.setup(buttonPin, GPIO.IN)
 	# GPIO.add_event_detect(buttonPin, GPIO.BOTH, callback=controller.dispensePill)
+
 	GPIO.setmode(GPIO.BCM)
 	GPIO.setup(27, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 	GPIO.add_event_detect(27, GPIO.RISING, callback=temp, bouncetime=200)
@@ -219,8 +220,14 @@ def main():
 			GPIO.setmode(GPIO.BCM)
 			GPIO.setup(27, GPIO.IN)
 			if GPIO.input(27):
-				print("no")
+				#button press detected
+				print("button pressed")
 
+			if contoller.timer.check():
+				controller.alarm.play()
+
+			print controller.timer.times[0]
+			
 			time.sleep(1) # sleep 1 sec
 		finally:
 			GPIO.cleanup()
