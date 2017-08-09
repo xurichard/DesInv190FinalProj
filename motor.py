@@ -221,13 +221,13 @@ def main():
 			GPIO.setmode(GPIO.BCM)
 			GPIO.setup(27, GPIO.IN)
 			GPIO.setup(17, GPIO.OUT)
-			
+
 			if GPIO.input(27):
 				#button press detected
 				print("button pressed")
 
 			if (datetime.datetime.now() - due).total_seconds() > 0:
-				alarm(17).play()
+				Alarm(17).play()
 
 			print (datetime.datetime.now() - due).total_seconds()
 
