@@ -117,9 +117,9 @@ class Dispenser:
 
 	def dispense(self):
 		self.pwm.start(5) #slot/total_slots
-		duty = float(20)
+		duty = float(55)
 		self.pwm.ChangeDutyCycle(duty)
-		time.sleep(5) #wait for 5 seconds while dispensings
+		time.sleep(2) #wait for 5 seconds while dispensings
 		self.pwm.stop()
 
 # Class for interfacing with the piezoelectric buzzer
