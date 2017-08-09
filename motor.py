@@ -218,7 +218,7 @@ def main():
 	# GPIO.setup(27, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 	# GPIO.add_event_detect(27, GPIO.RISING, callback=temp, bouncetime=200)
 	alarmed = False
-	angles = [160, 90, 10]
+	angles = [180, 90, 0]
 	index = 0
 	while(True):
 		try:
@@ -233,7 +233,7 @@ def main():
 				pwm = GPIO.PWM(18, 100)
 				pwm.start(5)
 
-				angle = (angles[index]/10.0) + 2.5
+				angle = ((angles[index]/180.0) + 1.0) * 5.0
 				print angle, index
 				pwm.ChangeDutyCycle(angle)
 				time.sleep(1)
